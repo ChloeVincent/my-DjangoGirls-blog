@@ -53,7 +53,8 @@ def species_info(request):
 			return render(request, 'blog/species_info.html', {'form':form, 'species':species})
 	else:
 		form = SearchForm()
-		return render(request, 'blog/species_info.html', {'form':form})
+
+	return render(request, 'blog/species_info.html', {'form':form})
 
 
 #	name = 'monstera deliciosa'
