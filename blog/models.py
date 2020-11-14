@@ -29,6 +29,7 @@ class Species(models.Model):
 
 
 	def search(self):
+		print("self.name is: "+ self.name)
 		result = ipni.search(self.name)
 		self.count= result.size()
 
