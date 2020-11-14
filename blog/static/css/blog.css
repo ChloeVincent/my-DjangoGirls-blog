@@ -1,6 +1,6 @@
 h1 a, h2 a {
-	color: #FF8833;
-	font-family: 'Lobster';
+	color: #008285;
+	font-family: 'Quicksand';
 }
 
 body {
@@ -8,7 +8,7 @@ body {
 }
 
 .page-header {
-    background-color: #FF8833;
+    background-color: #008285;
     margin-top: 0;
     padding: 20px 20px 20px 40px;
 }
@@ -24,7 +24,8 @@ body {
 }
 
 h1, h2, h3, h4 {
-    font-family: 'Lobster', cursive;
+    font-family: 'Quicksand';
+    font-weight: bold;
 }
 
 .date {
