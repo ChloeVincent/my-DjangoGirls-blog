@@ -1,6 +1,8 @@
 from django.db import models
 from django.conf import settings
 from django.utils import timezone
+import pykew.ipni as ipni
+
 
 class Post(models.Model):
 	"""Post is a class that describe blog posts"""
@@ -17,3 +19,18 @@ class Post(models.Model):
 
 	def __str__(self):
 		return self.title
+
+
+
+class Species(models.Model):
+	"""docstring for Species"""
+	name = models.CharField(max_length=200)
+	count= 0
+
+
+	def search(self):
+		result = ipni.search(self.name)
+		self.count= result.size()
+
+	def __str__(self):
+		return self.name
