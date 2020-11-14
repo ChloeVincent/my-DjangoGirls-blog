@@ -2,17 +2,15 @@
 
 {% block content %}
 
-<h2>{{name}} informations</h2>
- <p>There are {{count}} {{name}}</p>
-
-<!-- <form method="POST", class="post-form">
+<form method="POST", class="post-form">
 	{% csrf_token %}
     {{form.as_p}}
     <button type="submit" class="save btn btn-default">Save</button>
 </form>
 
-{%if species %} -->
-
-<!-- {% endif %} -->
+{%if species %}
+<h2>{{species.name}} informations</h2>
+ <p>There are {{species.count}} {{species.name}}</p>
+{% endif %}
 
 {% endblock %}
