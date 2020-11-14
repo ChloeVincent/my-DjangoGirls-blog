@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post
 from django.utils import timezone
 from .forms import PostForm
+from .pykew import Species
 
 
 def post_list(request):
@@ -42,3 +43,11 @@ def post_edit(request, pk):
 		form = PostForm(instance=post)
 
 	return render(request, 'blog/post_edit.html', {'form':form})
+
+
+def species_info(request):
+	name = 'monstera deliciosa'
+	species = Species(name)
+	
+	#print("we found %i %s"% (count, name))
+	return render(request, 'blog/species_info.html', {'species':species})
