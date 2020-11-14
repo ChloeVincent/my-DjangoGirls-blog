@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post, Species
 from django.utils import timezone
 from .forms import PostForm, SearchForm
+import pykew.ipni as ipni
+
 
 
 def post_list(request):
@@ -45,19 +47,18 @@ def post_edit(request, pk):
 
 
 def species_info(request):
-	if request.method == "POST":
-		form = SearchForm(request.POST)
-		if form.is_valid():
-			species = form.save(commit=False)
-			species.search()
-			return render(request, 'blog/species_info.html', {'form':form, 'species':species})
-	else:
-		form = SearchForm()
-		return render(request, 'blog/species_info.html', {'form':form})
-
-
-#	name = 'monstera deliciosa'
-#	species = Species(name)
-#	
+	# if request.method == "POST":
+	# 	form = SearchForm(request.POST)
+	# 	if form.is_valid():
+	# 		species = form.save(commit=False)
+	# 		species.search()
+	# 		return render(request, 'blog/species_info.html', {'form':form, 'species':species})
+	# else:
+	# 	form = SearchForm()
+	# 	return render(request, 'blog/species_info.html', {'form':form})
+	name = 'monstera deliciosa'
+	#species = Species(name)
+	result = ipni.search(name)
+	count= result.size()
 	#print("we found %i %s"% (count, name))
-#	return render(request, 'blog/species_info.html', {'species':species})
+	return render(request, 'blog/species_info.html', {'name':name,'count':count})
