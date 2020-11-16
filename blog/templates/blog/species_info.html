@@ -1,16 +1,34 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-
+Please enter a query below for the Kew database (the name of a species for instance)
 <form method="POST", class="post-form">
 	{% csrf_token %}
     {{form.as_p}}
-    <button type="submit" class="save btn btn-default">Save</button>
+    <button type="submit" class="save btn btn-default">Submit</button>
 </form>
 
 {%if species %}
-<h2>{{species.name}} informations</h2>
- <p>There are {{species.count}} {{species.name}}</p>
+<span> <br></span>
+<h2>Informations on '{{species.query}}'</h2>
+ <p>There are {{species.count}} occurence(s) of '{{species.query}}' found in Kew database</p>
+
+{% for occurence in species.occurences %}
+{% if occurence.name %}
+<div class="occurence">
+    <p>Name: {{occurence.name}}</p>
+    <p>Family: {{occurence.family}}</p>
+    <p>Genus: {{occurence.genus}}</p>
+    <p>Species: {{occurence.species}}</p>
+    {%if occurence.distribution %}
+    <p>Distribution: {{occurence.distribution}}</p>
+    {% endif %}
+</div>
+{% endif %}
+{% endfor %}
+
+
+
 {% endif %}
 
 {% endblock %}

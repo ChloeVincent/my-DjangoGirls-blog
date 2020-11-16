@@ -14,4 +14,4 @@ class SearchForm(forms.ModelForm):
 
 	class Meta:
 		model = Species
-		fields = ('name',)
+		fields = ('query',)
