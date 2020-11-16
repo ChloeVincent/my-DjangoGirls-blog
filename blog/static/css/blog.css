@@ -60,3 +60,13 @@ h1, h2, h3, h4 {
     margin: 10px;
     padding: 10px;
 }
+
+
+.query-database-btn{
+    border-style: solid;
+    border-width: 3px;
+    border-color: #008285;
+    margin-bottom: 25px;
+    background-color: rgba(0,130,133,0.2);
+
+}
