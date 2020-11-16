@@ -25,7 +25,7 @@ SECRET_KEY = 'cq9dkabk+6atkyp-a3q^)0%ig9x_=*(+ky5=_*^q2&an3o_+0%'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','.pythonanywhere.com']
+ALLOWED_HOSTS = ['127.0.0.1','.pythonanywhere.com', 'chloe-django-blog.nw.r.appspot.com']
 
 
 # Application definition
@@ -71,15 +71,53 @@ TEMPLATES = [
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/2.2/ref/settings/#databases
+# ORIGINAL DB settings
+# # Database
+# # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
+
+# DB settings to connect to Gcloud
+# from https://medium.com/@BennettGarner/deploying-a-django-application-to-google-app-engine-f9c91a30bd35
+
+# [START db_setup]
+if os.getenv('GAE_APPLICATION', None):
+    # Running on production App Engine, so connect to Google Cloud SQL using
+    # the unix socket at /cloudsql/<your-cloudsql-connection string>
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'HOST': '/cloudsql/chloe-django-blog:europe-west2:chloe-django-blog-sql',
+            'USER': 'root',
+            'PASSWORD': 'testpassword',
+            'NAME': 'djangomysql',
+        }
     }
-}
+
+else:
+    # Running locally so connect to either a local MySQL instance or connect 
+    # to Cloud SQL via the proxy.  To start the proxy via command line: 
+    #    $ cloud_sql_proxy -instances=[INSTANCE_CONNECTION_NAME]=tcp:3306 
+    # See https://cloud.google.com/sql/docs/mysql-connect-proxy
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'HOST': '127.0.0.1',
+            'PORT': '3306',
+            'NAME': 'djangomysql',
+            'USER': 'root',
+            'PASSWORD': 'testpassword',
+        }
+    }
+# [END db_setup]
+
+
 
 
 # Password validation
@@ -104,7 +142,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-uk'
+LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'Europe/London'
 
@@ -121,3 +159,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR,'static')
+
+
+# Bennett Garner says to use the following but I will try and keep what is above since it looks more robust
+# STATIC_URL = '/static/'
+# STATIC_ROOT = 'static'
