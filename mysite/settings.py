@@ -25,7 +25,7 @@ SECRET_KEY = 'cq9dkabk+6atkyp-a3q^)0%ig9x_=*(+ky5=_*^q2&an3o_+0%'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','.pythonanywhere.com', 'chloe-django-blog.nw.r.appspot.com']
+ALLOWED_HOSTS = ['127.0.0.1','.pythonanywhere.com', '.appspot.com']
 
 
 # Application definition
