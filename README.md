@@ -1,5 +1,9 @@
 # My first Django blog
 
+EDIT: given that my free trial of Google Cloud has ended, I stopped the SQL database. 
+The equivalent website is available at [chloevincent.pythonanywhere.com][http://chloevincent.pythonanywhere.com/]. 
+It uses a local database instead.
+
 Available at [chloe-django-blog.appspot.com](http://chloe-django-blog.appspot.com/)
 
 I started by creating a simple Django app thanks to Django girls tutorial.
